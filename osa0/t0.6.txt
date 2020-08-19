@@ -1,0 +1,18 @@
+kayttaja->selain:
+note left of selain
+  käyttäjä kirjottaa note-nimiseen tekstikenttään
+  kommenttinsa ja painaa lähetä-painiketta
+end note
+
+note over selain
+  selain on liittänyt spa.js:ää tulkatessaan
+  notes_form-nimiseen lomakkeeseen tapahtumankäsittelijän,
+  joka estää lomakkeen normaalitoiminnan. sen sijaan
+  lomakkeen sisältö päivitetään DOMilla sivun muistiin-
+  panolistan perälle, ja lähettää formin sisällön
+  myös palvelimelle JSON-tyyppisenä datana.
+end note
+
+selain->palvelin: POST fullstack-exampleapp.herokuapp.com/new_note_spa
+
+palvelin->selain: status 201, lisäksi viesti "note created"

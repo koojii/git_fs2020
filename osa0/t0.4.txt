@@ -1,0 +1,60 @@
+kayttaja->selain:
+note over selain
+  käyttäjä kirjoittaa tekstikenttään jotain ja painaa tallenna-painiketta
+end note
+
+note over selain
+  lomake lähetetään sivun lomakkeen
+  action-attribuutissa mainittuun urliin
+  lomakkeessa määritetyllä metodilla
+end note
+
+selain->palvelin: POST https://fullstack-exampleapp.herokuapp.com/new_note
+
+note over palvelin
+  palvelin suorittaa new_note-tiedoston
+  ja välittää sille selaimen lähettämän lomakkeen.
+  new_note:n koodissa luodaan uutta muistiinpanoa
+  vastaava olio, sijoitetaan siihen alkuperäisen
+  note-tekstikentän sisältö, ja sijoitetaan
+  tämä olio notes-nimiseen taulukkoon.
+  lopuksi koodissa määritetään lähettämään
+  selaimelle kuittauksessa uudelleenohjauspyyntö
+  sijaintiin /notes
+end note
+
+palvelin->selain: status 302, redirectaus-pyyntö selaimelle osoitteeseen /notes
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/notes
+
+palvelin->selain: status 200, notes-sivun HTML-koodi
+note over selain
+  selain alkaa hakea sivulla listattuja tiedostoja
+end note
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/main.css
+
+palvelin->selain: status 200, main.css:n sisältö
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/main.js
+
+palvelin->selain: status 200, main.js:n sisältö
+note over selain
+  selaimen javascript-tulkki
+  alkaa suorittaa main.js-tiedostoa
+end note
+
+note over selain
+  main.js:stä löytyy get-pyyntö, jonka
+  selain suorittaa
+end note
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/data.json
+
+palvelin->selain: status 200, data.json:n sisältö
+note over selain
+  selaimen javascript-tulkki
+  suorittaa loput main.js-tiedostosta,
+  eli luo data.json:n sisällöstä html-elementit,
+  jotka sijoitetaan DOMin kautta sivulle
+end note

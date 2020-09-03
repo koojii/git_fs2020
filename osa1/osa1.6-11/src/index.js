@@ -34,18 +34,25 @@ const Statistics = ({ goodAmount, neutralAmount, badAmount }) => {
   if (!interacted) { return (<div>No feedback given</div>) }
 
   return (
-    <>
-      <StatisticLine name='good' amount={goodAmount} />
-      <StatisticLine name='neutral' amount={neutralAmount} />
-      <StatisticLine name='bad' amount={badAmount} />
-      <StatisticLine name='all' amount={goodAmount + neutralAmount + badAmount} />
-      <StatisticLine name={'average'} amount={average(goodAmount, neutralAmount, badAmount)} />
-      <StatisticLine name={'positive'} amount={percents(goodAmount, neutralAmount, badAmount)} />
-    </>
+
+    <table>
+      <tbody>
+        <StatisticLine name='good' amount={goodAmount} />
+        <StatisticLine name='neutral' amount={neutralAmount} />
+        <StatisticLine name='bad' amount={badAmount} />
+        <StatisticLine name='all' amount={goodAmount + neutralAmount + badAmount} />
+        <StatisticLine name={'average'} amount={average(goodAmount, neutralAmount, badAmount)} />
+        <StatisticLine name={'positive'} amount={percents(goodAmount, neutralAmount, badAmount)} />
+      </tbody>
+    </table>
   )
 }
 const StatisticLine = (props) => {
-  return (<div>{props.name} {props.amount}</div>)
+  return (
+    <tr>
+      <td>{props.name}</td>
+      <td>{props.amount}</td>
+    </tr>)
 }
 
 const average = (goodAmount, neutralAmount, badAmount) => {

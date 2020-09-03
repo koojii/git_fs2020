@@ -29,6 +29,10 @@ const Button = (props) => {
   return (<button onClick={props.handler}>{props.text}</button>)
 }
 const Statistics = ({ goodAmount, neutralAmount, badAmount }) => {
+  let interacted = !(goodAmount === 0 && neutralAmount === 0 && badAmount === 0)
+
+  if (!interacted) { return (<div>No feedback given</div>) }
+
   return (
     <>
       <StatRow name='good' amount={goodAmount} />
@@ -49,7 +53,7 @@ const Average = ({ goodAmount, neutralAmount, badAmount }) => {
   return (<div>average {value / (goodAmount + neutralAmount + badAmount)}</div>)
 }
 const Percents = ({ goodAmount, neutralAmount, badAmount }) => {
-  return (<div>positive {100* (goodAmount / (goodAmount + neutralAmount + badAmount))} %</div>)
+  return (<div>positive {100 * (goodAmount / (goodAmount + neutralAmount + badAmount))} %</div>)
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));

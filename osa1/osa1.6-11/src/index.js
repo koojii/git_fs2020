@@ -17,7 +17,7 @@ const App = () => {
       <Button handler={neutralHandler} text='neutral' />
       <Button handler={badHandler} text='bad' />
       <h1>statistics</h1>
-      <StatReport
+      <Statistics
         goodAmount={goodAmount}
         neutralAmount={neutralAmount}
         badAmount={badAmount} />
@@ -28,7 +28,7 @@ const App = () => {
 const Button = (props) => {
   return (<button onClick={props.handler}>{props.text}</button>)
 }
-const StatReport = ({ goodAmount, neutralAmount, badAmount }) => {
+const Statistics = ({ goodAmount, neutralAmount, badAmount }) => {
   return (
     <>
       <StatRow name='good' amount={goodAmount} />

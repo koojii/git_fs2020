@@ -35,25 +35,25 @@ const Statistics = ({ goodAmount, neutralAmount, badAmount }) => {
 
   return (
     <>
-      <StatRow name='good' amount={goodAmount} />
-      <StatRow name='neutral' amount={neutralAmount} />
-      <StatRow name='bad' amount={badAmount} />
-      <div>all {goodAmount + neutralAmount + badAmount}</div>
-      <Average goodAmount={goodAmount} neutralAmount={neutralAmount} badAmount={badAmount} />
-      <Percents goodAmount={goodAmount} neutralAmount={neutralAmount} badAmount={badAmount} />
+      <StatisticLine name='good' amount={goodAmount} />
+      <StatisticLine name='neutral' amount={neutralAmount} />
+      <StatisticLine name='bad' amount={badAmount} />
+      <StatisticLine name='all' amount={goodAmount + neutralAmount + badAmount} />
+      <StatisticLine name={'average'} amount={average(goodAmount, neutralAmount, badAmount)} />
+      <StatisticLine name={'positive'} amount={percents(goodAmount, neutralAmount, badAmount)} />
     </>
   )
 }
-const StatRow = (props) => {
+const StatisticLine = (props) => {
   return (<div>{props.name} {props.amount}</div>)
 }
 
-const Average = ({ goodAmount, neutralAmount, badAmount }) => {
+const average = (goodAmount, neutralAmount, badAmount) => {
   let value = goodAmount * 1 + badAmount * -1
-  return (<div>average {value / (goodAmount + neutralAmount + badAmount)}</div>)
+  return (value / (goodAmount + neutralAmount + badAmount))
 }
-const Percents = ({ goodAmount, neutralAmount, badAmount }) => {
-  return (<div>positive {100 * (goodAmount / (goodAmount + neutralAmount + badAmount))} %</div>)
+const percents = (goodAmount, neutralAmount, badAmount) => {
+  return (100 * (goodAmount / (goodAmount + neutralAmount + badAmount)) + '%')
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));

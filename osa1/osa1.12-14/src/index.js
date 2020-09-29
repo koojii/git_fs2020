@@ -7,14 +7,19 @@ const App = (props) => {
       Math.floor(Math.random() * Math.floor(max))
     )
   }
-  
+
   const [selected, setSelected] = useState(randomInt(anecdotes.length))
 
+  const aStateChanger = () => setSelected(randomInt(anecdotes.length))
+
   return (
-    
+
     <div>
       {props.anecdotes[selected]}
+      <br />
+      <Button f={aStateChanger} text='next anectode' />
     </div>
+
   )
 }
 
@@ -26,6 +31,14 @@ const anecdotes = [
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
+
+const Button = (props) => {
+  return (
+    <button onClick={props.f}>{props.text}</button>
+  )
+
+}
+
 
 ReactDOM.render(
   <App anecdotes={anecdotes} />,
